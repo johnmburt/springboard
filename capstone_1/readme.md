@@ -1,4 +1,8 @@
-## Capstone Project 1: A Reddit troll rapid detection and warning tool
+# Capstone Project 1 
+
+# A Reddit troll rapid detection and warning tool
+
+ <img src="181108_troll_rs.jpg" alt="Reddit troll" align="center" width="600"> 
 
 ### Problem:
 Reddit allows anyone to participate in discussions in over a million subreddit forums. While Reddit’s format and rules give great freedom to communicate, they also allow participation by trolls and other bad actors who aim to disrupt online communities by posting argumentative, offensive or threatening comments. It‘s possible to identify some of these disruptive posters by their comment histories, but many trolls frequently create new accounts, which makes them hard to track.
