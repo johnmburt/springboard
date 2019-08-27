@@ -2,7 +2,7 @@
 # A Reddit troll rapid detection and warning tool
 
 <p align="center">
-  <img img src="181108_troll_rs.jpg" width="600"/>
+  <img img src="./assets/181108_troll.jpg" width="600"/>
 </p>
 
 Table of contents:
