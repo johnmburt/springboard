@@ -18,10 +18,49 @@ Reddit allows anyone to participate in discussions in over a million subreddit f
 This is a particularly difficult problem for Reddit moderators, who are responsible for ensuring that posts and comments meet community guidelines, and that the communities they manage remain positive and not toxic. In very large subreddit communities with political/ideological focus (for example r/politics), keeping track of trolls can be very difficult. I will develop an automated “troll early detection” tool for forum moderators that can monitor comments and report suspicious users before they can threadjack and disrupt otherwise civil discussions. For rapid detection, the tool will rely on comment text rather than posting history and votes, which can fluctuate initially. The troll early detection tool will be useful to moderators as an early warning that a threadjacking might be about to occur, so that they can assess and respond quickly if required.
 
 ### Methods
-- Using PRAW (Python Reddit API Wrapper) I will download a large sample of comments from a selection of subreddits with political or ideological topic focus, such as r/politics, r/republicans, r/democrats, etc, where trolls often post. Each comment will represent one text sample, with additional features such as: username, subreddit name, vote value and controversial flag state. Additional features may be derived from parent comments and replies, and an analysis of the user’s comment history. I will use these associated features and ground truthing to develop a classifier model that outputs a score representing the likelihood a comment was made by a troll and may be toxic. This score will then be used as a target variable to train an NLP classifier model using only comment text as the training sample. After a functional model is developed, I will apply it to a reddit bot that a user can subscribe to and configure to monitor selected subreddits for trollish comments, then alert the user.
+- **Data acquisition:** Using PRAW (Python Reddit API Wrapper) I downloaded a large sample of comments from a selection of subreddits with political or other topic focus, such as r/politics, r/republicans, r/democrats, and r/games, r/todayilearned and r/pics, where trolls often post. Each comment represents one text sample, with additional metadata such as: username, subreddit name, vote value and controversial flag state. [Notebook showing how I collected the comment data using PRAW](reddit_collect_comments_v1.ipynb)
 
-### Deliverables
-- Jupyter notebook(s) explaining the procedure and model.
-- A paper and/or blog post that describes the methodology
-- A Reddit bot that monitors commenting in a subreddit and applies the model to alert subscribers when a suspected troll is commenting.
-- User documentation.
+- **Generating the Troll Label:** In order to train models to detect troll comments, the comment samples used in training must be labelled as "troll" or "not-troll". However, the downloaded comment data has no "troll" label, so I had to generate that label myself. Comment vote score is the closest measure to a troll indicator: comments that are offensive or disagreable to the forum community will usually be heavily downvoted, resulting in a very negative score. So I used vote score as a guide to creating a label that indicated comment toxcicity, or a troll user.
+  
+  - **Creating a toxicity score:**  I created a continuous variable "toxicity score" based on PCA analysis of comment features. This score was normalized and ranged to values between -5 (very toxic) and +5 (highly approved) so that scores between subreddits were comparable (subs vary in voting rates). Then, I selected a toxicity score threshold, below which a comment would be deemed "toxic", and above which it would be "not toxic". A threshold of -1 was selected, which ensured that roughly 2-5% of comments for a given sub would be labelled "toxic".
+
+  - **PCA analysis methods:** Using the vote score as a guide, I correlated other comment metadata and selected the feature(s) that had strong correlations with vote score to include in a PCA analysis with two PCA dimensions. In my analysis (see Figures 1-3), the only other feature that correlated consistently with vote score was "number of replies to the comment". Two other features, "days since comment was made" and "overall user comment karma" were correlated, but the correlation varied greatly between subs and so these were excluded. PCA dimension 2 showed a positive regression with vote score and was chosen to use as the "toxicity score". This score was then normalized and ranged to values between -5 and +5. [Notebook demonstrating how I analyzed and generated the PCA based toxicity scores](reddit_generate_PCA_score_v1.ipynb)
+ 
+  - [Notebook showing example comments from r/politics](reddit_PCA_score_analysis.ipynb) with toxicity scores rated maximally negative/toxic (-5) vs. maximally positive (+5). 
+
+
+
+| Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
+| -- | -- | -- | 
+| ![feature correlations](./assets/feature_correlations.png) | ![Vote score vs PCA2 score](./assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](./assets/pca_score_distribution.png)  |
+
+
+**Table 1: Sample counts for each subreddit dataset, including number of toxic vs. non-toxic labels. Note that the political subreddits have a higher number of comments deemed toxic**
+
+| sub name | # samples | # not troll | # troll |
+| -- | -- | -- | -- |
+| aww | 217357 | 207315 | 10042 (4.6%) |
+| funny | 255418 | 246812 | 8606 (3.4%) |
+| todayilearned | 254686 | 237171 | 17515 (6.9%) |
+| askreddit | 198972 | 194922 | 4050 (2.0%) |
+| photography | 143707 | 137644 | 6063 (4.2%) |
+| gaming | 389944 | 378513 | 11431 (2.9%) |
+| videos | 413753 | 397537 | 16216 (3.9%) |
+| science | 152385 | 147346 | 5039 (3.3%) |
+| politics | 361384 | 340759 | 20625 (5.7%) |
+| politicaldiscussion | 350382 | 306212 | 44170 (12.6%) |
+| conservative | 124300 | 108493 | 15807 (12.7%) |
+| the_Donald | 389035 | 354221 | 34814 (8.9%) |
+
+
+
+- **Are troll comments the same across subreddits?** It would be ideal if a single model could be used to detect toxic comments in any subreddit. Alternatively, it might be the case that each subreddit has it's own vocabulary and responds differently to comments - it's possible that a highly rated comment in one sub is considered toxic in another. [To test this I analyzed toxic comments within vs between subs.](reddit_intersub_analysis_data_story.ipynb) What I found was that each subreddit does indeed have its own vocabulary ofterms used, and that subs with similar topics are more similar. This suggests that a single model trained on all sub data will likely perform poorly compared to individual classifier models trained only on comments from a particular sub.
+
+| Figure 4: Cosine similarity confusion matrix comparing all subs | Figure 5: MDS mapping based on the similarity matrix |
+| -- | -- | 
+| ![confusion](./assets/intersub_conf_mx.png) | ![MDS map](./assets/intersub_MDS_map.png) |
+
+
+- **Classifier models**
+
+
