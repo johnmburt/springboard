@@ -8,7 +8,7 @@
 Table of contents:
 - [The problem](#problem)
 - [Methods](#methods)
-- [Deliverables](#deliverables)
+- [Classifier Models](#classifier-models)
 
 
 
@@ -59,6 +59,20 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 | Figure 4: Cosine similarity confusion matrix comparing all subs | Figure 5: MDS mapping based on the similarity matrix |
 | -- | -- | 
 | ![confusion](./assets/intersub_conf_mx.png) | ![MDS map](./assets/intersub_MDS_map.png) |
+
+| Figure 6: Wordclouds of positive comments and negative comments across subreddits  |
+| -- |  
+| ![comment wordclouds](./assets/positive_vs_negative_comment_text_wordclouds.png)|
+
+
+
+  - **Does a low PCA score predict actual troll comments?** Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score, number of replies, and PCA toxicity score have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values. User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. #### [Notebook: "troll reply" analysis](reddit_reply_to_troll_analysis_v9.ipynb)
+
+#### ["troll reply" analysis: reddit_reply_to_troll_analysis_v9.ipynb](reddit_reply_to_troll_analysis_v9.ipynb)
+
+ | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" | Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
+| -- | -- | -- | -- | 
+| ![troll words vs vote score](./assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](./assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](./assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](./assets/troll_words_vs_PCA_score.png) |
 
 
 - **Classifier models**
