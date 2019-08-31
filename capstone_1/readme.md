@@ -24,10 +24,7 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
   
   - **Creating a toxicity score:**  I created a continuous variable "toxicity score" based on PCA analysis of comment features. This score was normalized and ranged to values between -5 (very toxic) and +5 (highly approved) so that scores between subreddits were comparable (subs vary in voting rates). Then, I selected a toxicity score threshold, below which a comment would be deemed "toxic", and above which it would be "not toxic". A threshold of -1 was selected, which ensured that roughly 2-5% of comments for a given sub would be labelled "toxic".
 
-  - **PCA analysis methods:** Using the vote score as a guide, I correlated other comment metadata and selected the feature(s) that had strong correlations with vote score to include in a PCA analysis with two PCA dimensions. In my analysis (see Figures 1-3), the only other feature that correlated consistently with vote score was "number of replies to the comment". Two other features, "days since comment was made" and "overall user comment karma" were correlated, but the correlation varied greatly between subs and so these were excluded. PCA dimension 2 showed a positive regression with vote score and was chosen to use as the "toxicity score". This score was then normalized and ranged to values between -5 and +5. [Notebook demonstrating how I analyzed and generated the PCA based toxicity scores](reddit_generate_PCA_score_v1.ipynb)
- 
-  - [Notebook showing example comments from r/politics](reddit_PCA_score_analysis.ipynb) with toxicity scores rated maximally negative/toxic (-5) vs. maximally positive (+5). 
-
+  - **PCA analysis methods:** Using the vote score as a guide, I correlated other comment metadata and selected the feature(s) that had strong correlations with vote score to include in a PCA analysis with two PCA dimensions. In my analysis (see Figures 1-3), the only other feature that correlated consistently with vote score was "number of replies to the comment". Two other features, "days since comment was made" and "overall user comment karma" were correlated, but the correlation varied greatly between subs and so these were excluded. PCA dimension 2 showed a positive regression with vote score and was chosen to use as the "toxicity score". This score was then normalized and ranged to values between -5 and +5. [Notebook for analysis of the PCA based toxicity scores.](reddit_analyze_PCA_score_v1.ipynb) [Notebook for generating the toxicity score for every comment sample.](reddit_generate_PCA_score_v2.ipynb) [Notebook showing example comments from r/politics.](reddit_PCA_score_analysis.ipynb) with toxicity scores rated maximally negative/toxic (-5) vs. maximally positive (+5). 
 
 
 | Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
@@ -73,6 +70,19 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 | ![troll words vs vote score](./assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](./assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](./assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](./assets/troll_words_vs_PCA_score.png) |
 
 
-  - #### Classifier models
+  - #### Classifier models: 
+    - I chose several models to evaluate based on their common use in NLP tasks. 
+    - Model evaluation procedures:
+      - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. [Feature data files for models were generated in this notebook.](reddit_comment_create_model_features_v1.ipynb)
+      - Each model model was separately trained and tested with feature data from two different subs ('politics' and 'videos'). Testing two datasets was necessary because preliminary analyses found that political and non-political subs appear to have different downvoting behavior. I wanted to ensure that the classifier model would function equally well for both types of sub.
+      - Hyperparameters were optimized using the hyperopt package
+      - For each model type, optimized models were evaluated using k-fold cross validation for each subreddit in the dataset ().
+    
+    - Models used:
+      - The simplest model was Logistic Regression so it will be my baseline. 
+      - Multinomial Naive Bayes
+      - Random Forest
+      - XGBoost
+      - Recurrent Neural Network. 
 
 
