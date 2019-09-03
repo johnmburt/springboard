@@ -91,4 +91,7 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
       - XGBoost
       - Recurrent Neural Network. 
 
+    - Jupyter notebooks: 
+      - [Multinomial Naive Bayes hyperparameter tuning](reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb)
+      - [Multinomial Naive Bayes cross-validation](reddit_toxic_comment_detection_model_MNB_validation_v1.ipynb)
 
