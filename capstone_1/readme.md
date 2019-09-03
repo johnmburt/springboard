@@ -35,7 +35,7 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
   - Jupyter notebook: [Example comments from r/politics.](reddit_PCA_score_analysis.ipynb)
   - Jupyter notebook: [Generate Table 1 in markdown format.](reddit_generate_sub_data_stats.ipynb)
 
-**Table 1: Sample counts for each subreddit dataset, including number of toxic vs. non-toxic labels.** Note that the political subreddits have a higher number of comments deemed toxic. This appears to be due to higher rates of downvoting in political subreddits.
+**Table 1: Sample counts for each subreddit dataset, including number of toxic vs. non-toxic labels.** For this project, a comment was labelled "toxic" if it had a toxicity score less than -1. Note that the political subreddits have a higher number of comments deemed toxic. This seems to be due to higher rates of downvoting in political subreddits.
 
 | sub name | # samples | # not troll | # troll |
 | -- | -- | -- | -- |
