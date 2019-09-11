@@ -85,24 +85,28 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
       - For each model type, optimized models were evaluated using k-fold cross validation for each subreddit in the dataset.
       - Metric statistics were reported for all models.
     - Models used:
-      - The simplest model was Logistic Regression so it will be my baseline. 
       - Multinomial Naive Bayes
       - Random Forest
       - XGBoost
       - Recurrent Neural Network. 
 
-    - Jupyter notebooks: 
-      - [Multinomial Naive Bayes hyperparameter tuning](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb)
-      - [Multinomial Naive Bayes cross-validation](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_validation_v2.ipynb)
+## Jupyter notebooks for the classifier models: 
+
+### Hyperparameter tuning
+| Model | 
+| --- |
+| [Multinomial Naive Bayes](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb) |
+| [Random Forest](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_hyperopt_v1.ipynb) |
+| [XGBoost](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_hyperopt_v1.ipynb) |
+| [Recurrent Neural Network](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_hyperopt_v2.ipynb) |
+    
+
+### Cross-validation
+| Model | 
+| --- |
+| [Multinomial Naive Bayes](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_validation_v2.ipynb) |
+| [Random Forest](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_validation_v1.ipynb) |
+| [XGBoost](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_validation_v1.ipynb) |
+| [Recurrent Neural Network](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
 
 
-      - [Random Forest hyperparameter tuning](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_hyperopt_v1.ipynb)
-      - [Random Forest cross-validation](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_validation_v1.ipynb)
-
-
-      - [XGBoost hyperparameter tuning](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_hyperopt_v1.ipynb)
-      - [XGBoost cross-validation](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_validation_v1.ipynb)
-
-
-      - [Recurrent Neural Network hyperparameter tuning](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_hyperopt_v2.ipynb)
-      - [Multinomial Naive Bayes cross-validation](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb)
