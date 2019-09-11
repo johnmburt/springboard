@@ -194,9 +194,63 @@ def load_feature_data(subnames, srcdir, toxic_thresh=-1, text_prep_args=None):
 # 
 # The balance_classes_sparse function does sample balancing with sparse matrices, such as vectorized BOW data.
 
-# In[ ]:
+# In[3]:
 
 
+#******************************************************
+# pandas dataframe version of balance classes
+#******************************************************
+def balance_classes_df(df, ycol, samples_per_class=None, verbose=False):
+    """Equalize number of samples so that all classes have equal numbers of samples.
+    If samples_per_class==None, then upsample (randomly repeat) all classes to the largest class,
+      Otherwise, set samples for all classes to samples_per_class."""
+    
+    if verbose: print('Balancing class sample frequencies:')
+    
+    # all class IDs
+    classes =  df[ycol].unique()
+    classes = classes[~np.isnan(classes)]
+    
+    # get class with max samples
+    if verbose: print('\tOriginal sample frequencies:')
+    if samples_per_class is None:
+        samples_per_class = 0
+        for c in classes:
+            if verbose: print('\t\tclass:',c,'#samples:',(df[ycol]==c).sum())
+            samples_per_class = np.max([samples_per_class, (df[ycol]==c).sum()])
+    if verbose: print('\tNew samples_per_class:',samples_per_class)
+            
+    # create a list of samples for each class with equal sample numbers 
+    newdata = []
+    for c in classes:
+        newdata.append(df[df[ycol]==c].sample(samples_per_class, replace=True)) 
+
+    return pd.concat(newdata)
+
+#******************************************************
+# numpy array version of balance_classes
+#******************************************************
+def balance_classes_np(X, y, samples_per_class=None, verbose=False):
+    """Equalize number of samples so that all classes have equal numbers of samples.
+    If samples_per_class==None, then upsample (randomly repeat) all classes to the largest class,
+      Otherwise, set samples for all classes to samples_per_class."""
+   
+    # cheaty code here, TODO: reimplement this with pure np 
+    Xy_df = pd.concat([pd.DataFrame(X),pd.DataFrame(y)], axis=1,ignore_index=True)
+    Xy_df.columns = [str(n) for n in Xy_df.columns]
+    Xy_df.columns.values[-1] = 'y'
+    Xy_df_bal = balance_classes_df(Xy_df, 'y', 
+                                   samples_per_class=samples_per_class, 
+                                   verbose=verbose)
+    
+    # more cheaty: assumes only last column is y.
+    # This will break if y is not a single column 
+    #   (for example a 1-hot encoding)
+    return Xy_df_bal.values[:,:-1], Xy_df_bal.values[:,-1]
+
+#******************************************************
+# numpy sparse array version of balance_classes
+#******************************************************
 from scipy.sparse import vstack, hstack
 from scipy.sparse.csr import csr_matrix
 
@@ -226,7 +280,7 @@ def balance_classes_sparse(X, y, samples_per_class=None, verbose=False):
         print('Balancing class sample frequencies:')
         
     # all class IDs
-    classes =  pd.unique(y)
+    classes =  np.unique(y)
     classes = classes[~np.isnan(classes)]
     
     # get class with max samples
@@ -274,14 +328,15 @@ from sklearn.metrics import precision_score, recall_score, balanced_accuracy_sco
 from sklearn.metrics import f1_score, roc_auc_score
 from time import time
 
-def log_model_results(logpath, modelname, subname, y_test, y_pred):
+def log_model_results(logpath, modelname, subname, 
+                      y_test, y_pred, time=0):
     """Write to CSV log file containing results of model train/test runs"""
     
     # write the header labels
     if not os.path.exists(logpath):
         labels = (['date','model','sub','num_nontoxic','num_toxic',
                    'acc_nontoxic','acc_toxic','accuracy','precision',
-                   'recall','balanced_acc','F1','roc_auc'])
+                   'recall','balanced_acc','F1','roc_auc','time_sec'])
         with open(logpath, 'a', newline='') as csvfile:
             csvwriter = csv.writer(csvfile, delimiter=',')
             csvwriter.writerow(labels)
@@ -297,7 +352,8 @@ def log_model_results(logpath, modelname, subname, y_test, y_pred):
            '%1.3f'%(recall_score(y_test, y_pred)),
            '%1.3f'%(balanced_accuracy_score(y_test, y_pred)),
            '%1.3f'%(f1_score(y_test, y_pred)),
-           '%1.3f'%(roc_auc_score(y_test, y_pred))
+           '%1.3f'%(roc_auc_score(y_test, y_pred)),
+           '%1.2f'%(time)
           ]
     # write the data row
     with open(logpath, 'a', newline='') as csvfile:
