@@ -9,6 +9,10 @@ Table of contents:
 - [The problem](#problem)
 - [Methods](#methods)
 - [Classifier Models](#classifier-models)
+- [Results](#results)
+- [Conclusions](#conclusions)
+- [References](#references)
+- [List of all notebooks](#all-notebooks)
 
 ### Problem
 Reddit allows anyone to participate in discussions in over a million subreddit forums. While Reddit’s format and rules give great freedom to communicate, they also allow participation by trolls and other bad actors who aim to disrupt online communities by posting argumentative, offensive or threatening comments. It‘s possible to identify some of these disruptive posters by their comment histories, but many trolls frequently create new accounts, which makes them hard to track.
@@ -82,11 +86,21 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 | -- | -- | -- | -- | 
 | ![troll words vs vote score](./assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](./assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
 
+  - #### Model feature engineering and model prep
+    - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
+    - Additionally, to simplify the following model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
+
+| Jupyter notebook |
+| -- |
+| [Model feature data file creation.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_comment_create_model_features_v1.ipynb) |
+| [Shared functions module](https://github.com/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
+
+
+
 
   - #### Classifier models: 
     - I chose several models to evaluate based on their common use in NLP tasks. 
     - Model evaluation procedures:
-      - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. 
       - Each model model was separately trained and tested with feature data from two different subs ('politics' and 'videos'). Testing two datasets was necessary because preliminary analyses found that political and non-political subs appear to have different downvoting behavior. I wanted to ensure that the classifier model would function equally well for both types of sub.
       - Hyperparameters were optimized using the hyperopt package
       - For each model type, optimized models were evaluated using k-fold cross validation for each subreddit in the dataset.
@@ -98,14 +112,6 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
       - Recurrent Neural Network. 
 
       
-| Jupyter notebook |
-| -- |
-| [Model feature data file creation.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_comment_create_model_features_v1.ipynb) |
-| [Shared functions module](https://github.com/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
-
-
-
-
 | Model hyperparameter tuning notebooks | 
 | --- |
 | [Multinomial Naive Bayes](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb) |
@@ -122,3 +128,30 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 | [Recurrent Neural Network](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
 
 
+### Results
+
+### Conclusions
+
+### References
+
+### All notebooks
+
+| |
+| -- |
+| [Collecting Reddit comment data using PRAW](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_collect_comments_v1.ipynb) |
+| [Analysis of the PCA based toxicity scores.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_analyze_PCA_score_v1.ipynb) |
+| [Generating the toxicity score for every comment sample.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_generate_PCA_score_v2.ipynb) |
+| [Example comments from r/politics.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_PCA_score_analysis.ipynb) |
+| [Generate Table 1 in markdown format.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_generate_sub_data_stats.ipynb) |
+| [Analysis of troll/toxic comments within vs between subs.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_intersub_analysis_data_story.ipynb) |
+| ["troll reply" analysis of toxicity score](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
+| [Model feature data file creation.](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_comment_create_model_features_v1.ipynb) |
+| [Shared functions module](https://github.com/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
+| [Hyperparameter tuning Multinomial Naive Bayes](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb) |
+| [Hyperparameter tuning Random Forest](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_hyperopt_v1.ipynb) |
+| [Hyperparameter tuning XGBoost](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_hyperopt_v1.ipynb) |
+| [Hyperparameter tuning Recurrent Neural Network](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_hyperopt_v2.ipynb) |
+| [Cross-validation Multinomial Naive Bayes](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_validation_v2.ipynb) |
+| [Cross-validation Random Forest](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_validation_v1.ipynb) |
+| [Cross-validation XGBoost](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_validation_v1.ipynb) |
+| [Cross-validation Recurrent Neural Network](https://github.com/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
