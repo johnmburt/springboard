@@ -132,6 +132,43 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 
 ### Results
 
+I compared the performance of four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
+
+When evaluating model performance, I was looking at which models had the highest scores, but also how variable the models were: it wouldn't do for a model to perform very well with certain datasets, but very poorly with others.
+
+#### How do models perform overall, and intersub performance variability.
+
+| Figure 7: Mean +/- SE model performance for all subreddits |
+| -- | 
+| ![overall performance](./assets/model_perf_mean_SE.png) |
+
+#### Comparing model performance across subreddits.
+
+| Figure 8: Model performance across subreddits |
+| -- | 
+| ![overall performance](./assets/model_perf_across_subs.png) |
+
+#### Effect of training sample size on model performance.
+
+| Figure 9: Effect of total number of training samples on model performance |
+| -- | 
+| ![overall performance](./assets/all_samp_size_vs_perf.png) |
+
+
+| Figure 10: Effect of number of Toxic training samples on model performance |
+| -- | 
+| ![overall performance](./assets/toxic_samp_size_vs_perf.png) |
+
+
+| Figure 11: Effect of percentage of toxic training samples on model performance |
+| -- | 
+| ![overall performance](./assets/toxic_samp_pct_vs_perf.png) |
+
+
+| Jupyter notebook |
+| --- |
+| [Model evaluation and selection](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_selection_v1.ipynb) |
+
 ### Conclusions
 
 ### References
@@ -157,3 +194,4 @@ This is a particularly difficult problem for Reddit moderators, who are responsi
 | [Cross-validation Random Forest](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RandomForest_bal_validation_v1.ipynb) |
 | [Cross-validation XGBoost](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_XGBoost_validation_v1.ipynb) |
 | [Cross-validation Recurrent Neural Network](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
+| [Model evaluation and selection](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_selection_v1.ipynb) |
