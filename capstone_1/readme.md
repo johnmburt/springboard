@@ -92,7 +92,7 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 | ![confusion](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_conf_mx.png) |
 
 
-#### MDS mapping the subreddit comment similarities (Figure 6) reveals several interesting trends:
+#### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends:
 
 - The political subs are clustered closely together, meaning the comments used similar language. Subs 'politics' and 'politicaldiscussion' are very close or overlapping. This suggests that the topics and commenting users may have high overlap.
 
