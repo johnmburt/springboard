@@ -51,12 +51,12 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 | -- | -- | -- | 
 | ![feature correlations](./assets/feature_correlations.png) | ![Vote score vs PCA2 score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/pca_score_distribution.png)  |
 
-| Jupyter notebook |
+| Jupyter notebooks |
 | -- |
 | [Analysis of the PCA based toxicity scores.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_analyze_PCA_score_v1.ipynb) |
 | [Generating the toxicity score for every comment sample.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_generate_PCA_score_v2.ipynb) |
 | [Example comments from r/politics.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_PCA_score_analysis.ipynb) |
-| [Generate Table 1 in markdown format.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_generate_sub_data_stats.ipynb) |
+
 
 **Table 1: Sample counts for each subreddit dataset, including number of toxic vs. non-toxic labels.** For this project, a comment was labelled "toxic" if it had a toxicity score less than -1. Note that the political subreddits have a higher number of comments deemed toxic. This seems to be due to higher rates of downvoting in political subreddits.
 
@@ -74,6 +74,11 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 | politicaldiscussion | 350382 | 306212 | 44170 (12.6%) |
 | conservative | 124300 | 108493 | 15807 (12.7%) |
 | the_Donald | 389035 | 354221 | 34814 (8.9%) |
+
+| Jupyter notebook |
+| -- |
+| [Generate Table 1 in markdown format.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_generate_sub_data_stats.ipynb) |
+
 
 ### **Are troll comments the same across subreddits?** 
 
