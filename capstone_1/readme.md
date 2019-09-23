@@ -152,14 +152,14 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
 
 ### Classifier models:
-I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
+I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network (RNN) using a bidirectional LSTM. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
 
 Table 2 shows which input features were used for each model. Note that unlike the others, the Recurrent Neural Network used only text feature data (tokenized and sequenced for the embedding input layer).
             
 **Table 2. Input features used by classifier models**
 
 | Model | Vectorized comment text | Metadata | Doc2Vec vectors | Sequenced text |
-| -- | -- | -- | -- | -- |
+| -- | :----: | :----: | :----: | :----: |
 | Multinomial Naive Bayes | * | * | * |  |
 | Random Forest | * | * | * |  |
 | XGBoost | * | * | * |  |
