@@ -134,16 +134,20 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 | -- |
 | ["troll reply" analysis of toxicity score](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
 
- | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" | Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
-| -- | -- | -- | -- | 
-| ![troll words vs vote score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
+ | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" |
+| -- | -- |
+| ![troll words vs vote score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | 
 
-  - #### Model feature engineering and model prep
+
+| Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
+| -- | -- | 
+![troll words vs user karma](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
+
+### Model feature engineering and model prep
   
-    - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
+- Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
     
-    
-    - To simplify the model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
+- To simplify the model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
 
 | Jupyter notebook |
 | -- |
