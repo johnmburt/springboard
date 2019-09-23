@@ -161,9 +161,9 @@ Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a sub
 | -- |
 | [Model feature data file creation.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_comment_create_model_features_v1.ipynb) |
 | [Shared functions module](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
-
-
-### Classifier models:
+      
+ 
+### Classifier models
 I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network (RNN) using a bidirectional LSTM. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
 
 Table 2 shows which input features were used for each model. Note that unlike the others, the Recurrent Neural Network used only text feature data (tokenized and sequenced for the embedding input layer).
@@ -177,7 +177,10 @@ Table 2 shows which input features were used for each model. Note that unlike th
 | XGBoost | * | * | * |  |
 | Recurrent Neural Network |  |  |  | * |
 
+
+### Model tuning and testing code 
       
+     
 | Model hyperparameter tuning notebooks | 
 | --- |
 | [Multinomial Naive Bayes](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb) |
