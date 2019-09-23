@@ -11,7 +11,6 @@ Table of contents:
 - [Classifier Models](#classifier-models)
 - [Results](#results)
 - [Conclusions](#conclusions)
-- [References](#references)
 - [List of all notebooks](#all-notebooks)
 
 ## TLDR
@@ -152,20 +151,18 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 | [Shared functions module](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
 
 
+**Classifier models:** I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
 
+Table 2 shows which input features were used for each model. Note that unlike the others, the Recurrent Neural Network used only text feature data (tokenized and sequenced for the embedding input layer).
+            
+**Table 2. Input features used by classifier models**
 
-  - #### Classifier models: 
-    - I chose several models to evaluate based on their common use in NLP tasks. 
-    - Model evaluation procedures:
-      - Each model model was separately trained and tested with feature data from two different subs ('politics' and 'videos'). Testing two datasets was necessary because preliminary analyses found that political and non-political subs appear to have different downvoting behavior. I wanted to ensure that the classifier model would function equally well for both types of sub.
-      - Hyperparameters were optimized using the hyperopt package
-      - For each model type, optimized models were evaluated using k-fold cross validation for each subreddit in the dataset.
-      - Metric statistics were reported for all models.
-    - Models used:
-      - Multinomial Naive Bayes
-      - Random Forest
-      - XGBoost
-      - Recurrent Neural Network. 
+| Model | Vectorized comment text | Metadata | Doc2Vec vectors | Sequenced text |
+| -- | -- | -- | -- | -- |
+| Multinomial Naive Bayes | * | * | * |  |
+| Random Forest | * | * | * |  |
+| XGBoost | * | * | * |  |
+| Recurrent Neural Network |  |  |  | * |
 
       
 | Model hyperparameter tuning notebooks | 
@@ -186,7 +183,7 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
 ### Results
 
-I compared the performance of four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
+I compared the performance of the four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
 
 When evaluating model performance, I was looking at which models had the highest scores, but also how variable the models were: it wouldn't do for a model to perform very well with certain datasets, but very poorly with others.
 
@@ -197,7 +194,7 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 - None of the models performed very well. The model with the highest balanced accuracy was XGBoost (65%) , and lowest was RNN (62%). 
 
 
-- XGBoost performed best, but performed the most variably across subreddits (SEM +/- 2.5%), while the worst performer, RNN, has the lowest variability across subreddits (SEM +/- 1.2%). The other two models also had higher variance than RNN. 
+- XGBoost performed best, but performed the most variably across subreddits (SEM +/- 2.5%), while the worst performer, Recurrent Neural Network, has the lowest variability across subreddits (SEM +/- 1.2%). The other two models also had higher variance than Recurrent Neural Network. 
 
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
@@ -208,10 +205,10 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 
 Looking at how models performed across all subreddits (Figure 8) revealed some interesting trends. 
 
-- Each model performed differently with different subreddits. For example, the RNN performed much better than all other models on r/science, but was much poorer than the others on r/politicaldiscussion. The lowest model/sub score was 52% (RandomForest/science) and the highest was 81% (RandomForest/the_donald).
+- Each model performed differently with different subreddits. For example, the RNN performed much better than all other models on r/science, but was much poorer than the others on r/politicaldiscussion. The lowest model/sub score was 52% (Random Forest/science) and the highest was 81% (RandomForest/the_donald).
 
 
-- The models MultinomialNB, RandomForest and XGBClassifier performed most similarly, while RNN often performed well when the others had poor balanced accuracy, and vice versa. That the first three models performed similarly is not surprising - they all used the same feature data, whereas the RNN had a very different data transformation process. 
+- The models Multinomial Naive Bayes, Random Forest and XGBoost performed most similarly, while Recurrent Neural Network often performed well when the others had poor balanced accuracy, and vice versa. That the first three models performed similarly is not surprising - they all used the same feature data, whereas the RNN had a very different data transformation process. 
 
 
 | Figure 8: Model performance across subreddits |
@@ -232,7 +229,7 @@ It's possible that some of the variation in classifier performance was due to th
 
 #### Effect of toxic sample size on classifier performance
 
-Even if total training sample size had no impact, it could be that the number of toxic-labelled samples was important to model performance. I plotted balanced accuracy against number of toxic-labelled samples for each subreddit and classifier type (Figure 10). This produced interesting and puzzling results: three models, MultinomialNB, RandomForest and XGBClassifier, performed better when there were more toxic-labelled samples, but the RNN performed worse when there were more toxic-labelled samples.
+Even if total training sample size had no impact, it could be that the number of toxic-labelled samples was important to model performance. I plotted balanced accuracy against number of toxic-labelled samples for each subreddit and classifier type (Figure 10). This produced interesting and puzzling results: three models, Multinomial Naive Bayes, Random Forest and XGBoost, performed better when there were more toxic-labelled samples, but the Recurrent Neural Network performed worse when there were more toxic-labelled samples.
 
 
 | Figure 10: Effect of number of Toxic training samples on model performance |
@@ -243,7 +240,7 @@ Even if total training sample size had no impact, it could be that the number of
 
 #### Effect of toxic sample percentage on classifier performance
 
-To further examine the effect of toxic-labelled sample size on model performance, I plotted balanced accuracy against the percentage of toxic-labelled comments in each subreddit dataset (Figure 11). This controls for overall sample size effect. I found an even stronger and similar effect: MultinomialNB, RandomForest and XGBClassifier performed better when there was a higher proportion of toxic-labelled samples, while the RNN performed worse. In fact, RNN shows a vey tight negative linear relationship with toxic-labelled sample proportion.
+To further examine the effect of toxic-labelled sample size on model performance, I plotted balanced accuracy against the percentage of toxic-labelled comments in each subreddit dataset (Figure 11). This controls for overall sample size effect. I found an even stronger and similar effect: Multinomial Naive Bayes, Random Forest and XGBoost performed better when there was a higher proportion of toxic-labelled samples, while the RNN performed worse. In fact, Recurrent Neural Network shows a vey tight **negative** linear relationship with toxic-labelled sample proportion.
 
 
 | Figure 11: Effect of percentage of toxic training samples on model performance |
@@ -257,7 +254,13 @@ To further examine the effect of toxic-labelled sample size on model performance
 
 ### Conclusions
 
-### References
+Overall, the models performed weakly. Random Forest and XGBoost did well only with a few specific subreddit comment datasets, and very poorly with others, making them unreliable. Multinomial Naive Bayes was overall worse than Random Forest and XGBoost and also had variable performance. Recurrent Neural Network model was worse overall than the other three, but it had lower variance across subreddits. My recommendation would be to do or a combination of two things:
+
+- Further improve the Recurrent Neural Network model. In particular, I did not have time to implement a multiple input deep learning model that could receive all of the feature data that the other models used, in addition to the sequenced text data required by the LSTM network. Also, Recurrent Convolutional networks are often used in text classification and should be tried for this task.
+
+- Combine the models as base classifiers in a stacked model. Given that each model performed differently with different datasets, a stacked model could bring significant improvements.
+
+
 
 ### All notebooks
 
