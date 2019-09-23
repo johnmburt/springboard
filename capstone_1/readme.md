@@ -100,7 +100,7 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 4: Cosine similarity confusion matrix comparing all subs |
 | -- |
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_conf_mx.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_conf_mx.png" width="800"/>  |
 
 
 ### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends
@@ -116,7 +116,7 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 5: MDS mapping based on the similarity matrix |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_MDS_map.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_MDS_map.png" width="800"/>  |
 
 ### What words are common to positive comments and are they different from negative comments? 
 
@@ -129,7 +129,7 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
 | Figure 6: Wordclouds of positive comments and negative comments across subreddits  |
 | -- |  
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png" width="400"/> |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png" width="800"/> |
 
 | Jupyter notebook |
 | -- |
@@ -142,12 +142,12 @@ Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a sub
 | -- |
 | ["troll reply" analysis of toxicity score](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
 
- | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" |
+ | Figure 6a: Mean +/- 95% CI vote scores when replies contain the word "troll" | Figure 6b: Mean +/- 95% CI number of replies when replies contain the word "troll" |
 | -- | -- |
 | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/trollwords_vs_vote_score.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_num_replies.png" width="400"/>  | 
 
 
-| Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
+| Figure 6c: Mean +/- 95% CI user Karma when replies contain the word "troll" | Figure 6d: Mean +/- 95% CI PCA-based toxicity score level when replies contain the word "troll" |
 | -- | -- | 
 <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_user_karma.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_PCA_score.png" width="400"/>  |
 
@@ -212,7 +212,7 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png" width="600"/>  |
 
 ### Comparing model performance across subreddits.
 
@@ -226,7 +226,7 @@ Looking at how models performed across all subreddits (Figure 8) revealed some i
 
 | Figure 8: Model performance across subreddits |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png" width="600"/>  |
 
 
 ### Effect of total sample size on classifier performance
@@ -236,7 +236,7 @@ It's possible that some of the variation in classifier performance was due to th
 
 | Figure 9: Effect of total number of training samples on model performance |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/all_samp_size_vs_perf.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/all_samp_size_vs_perf.png" width="600"/>  |
 
 
 
@@ -247,7 +247,7 @@ Even if total training sample size had no impact, it could be that the number of
 
 | Figure 10: Effect of number of Toxic training samples on model performance |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_size_vs_perf.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_size_vs_perf.png" width="600"/>  |
 
 
 
@@ -258,7 +258,7 @@ To further examine the effect of toxic-labelled sample size on model performance
 
 | Figure 11: Effect of percentage of toxic training samples on model performance |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_pct_vs_perf.png" width="400"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_pct_vs_perf.png" width="600"/>  |
 
 
 | Jupyter notebook |
@@ -267,11 +267,13 @@ To further examine the effect of toxic-labelled sample size on model performance
 
 ## Conclusions
 
-Overall, the models performed weakly. Random Forest and XGBoost did well only with a few specific subreddit comment datasets, and very poorly with others, making them unreliable. Multinomial Naive Bayes was overall worse than Random Forest and XGBoost and also had variable performance. Recurrent Neural Network model was worse overall than the other three, but it had lower variance across subreddits. My recommendation would be to do or a combination of two things:
+Overall, the models performed weakly. Random Forest and XGBoost did well only with a few specific subreddit comment datasets, and very poorly with others, making them unreliable. Multinomial Naive Bayes was overall worse than Random Forest and XGBoost and also had variable performance. Recurrent Neural Network model was worse overall than the other three, but it had lower variance across subreddits. My recommendation would be to do several things:
 
-- Further improve the Recurrent Neural Network model. In particular, I did not have time to implement a multiple input deep learning model that could receive all of the feature data that the other models used, in addition to the sequenced text data required by the LSTM network. Also, Recurrent Convolutional networks are often used in text classification and should be tried for this task.
+- Determine why Recurrent Neural Network model performance decreased as the proportion of toxic comments increased, which was counter-intuitive and unlike the other models. Understanding this behavior could help me improve the RNN model performance.
 
-- Combine the models as base classifiers in a stacked model. Given that each model performed differently with different datasets, a stacked model could bring significant improvements.
+- Enhance the Neural Network model. In particular, I would implement a multiple input deep learning model that could receive all of the feature data that the other models used, in addition to the sequenced text data required by the LSTM network. Also, Recurrent Convolutional networks are often used in text classification and may perform better than the network model used in this project.
+
+- Combine the models as base classifiers in a stacked model. Given that each model performed differently with different datasets, a stacked model could provide significant improvements.
 
 
 
