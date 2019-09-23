@@ -143,7 +143,7 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
     - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
     
     
-    - Additionally, to simplify the following model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
+    - To simplify the model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
 
 | Jupyter notebook |
 | -- |
@@ -151,7 +151,8 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 | [Shared functions module](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
 
 
-**Classifier models:** I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
+### Classifier models:
+I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
 
 Table 2 shows which input features were used for each model. Note that unlike the others, the Recurrent Neural Network used only text feature data (tokenized and sequenced for the embedding input layer).
             
