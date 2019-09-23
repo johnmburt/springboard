@@ -212,7 +212,7 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png" width="600"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png" width="800"/>  |
 
 ### Comparing model performance across subreddits.
 
@@ -226,7 +226,7 @@ Looking at how models performed across all subreddits (Figure 8) revealed some i
 
 | Figure 8: Model performance across subreddits |
 | -- | 
-| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png" width="600"/>  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png" width="800"/>  |
 
 
 ### Effect of total sample size on classifier performance
