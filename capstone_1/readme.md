@@ -79,11 +79,11 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 | [Generate Table 1 in markdown format.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_generate_sub_data_stats.ipynb) |
 
 
-### **Are troll comments the same across subreddits?** 
+### Are troll comments the same across subreddits? 
 
 It would be ideal if a single model could be used to detect toxic comments in any subreddit. Alternatively, it might be the case that each subreddit has it's own vocabulary and responds differently to comments - it's possible that a highly rated comment in one sub is considered toxic in another. What I found was that each subreddit does indeed have its own vocabulary ofterms used, and that subs with similar topics are more similar. This suggests that a single model trained on all sub data will likely perform poorly compared to individual classifier models trained only on comments from a particular sub.
 
-#### Word similarity of comments between subs
+### Word similarity of comments between subs
 
 How similar are comments made between the different subs? Are there different trends in similarity among positive vs. negative comments? Is the language used in political subs more similar than with other non-political subs?
 
@@ -96,7 +96,7 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 | ![confusion](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_conf_mx.png) |
 
 
-#### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends:
+### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends
 
 - The political subs are clustered closely together, meaning the comments used similar language. Subs 'politics' and 'politicaldiscussion' are very close or overlapping. This suggests that the topics and commenting users may have high overlap.
 
@@ -111,7 +111,7 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 | -- | 
 | ![MDS map](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_MDS_map.png) |
 
-### **What words are common to positive comments and are they different from negative comments?** 
+### What words are common to positive comments and are they different from negative comments? 
 
 For this analysis, I combined all positive comments (highly positive toxicity score) and all negative comments (very negative toxicity scores) and looked at the wordclouds for each (Figure 6).
 
@@ -128,7 +128,8 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 | -- |
 | [Analysis of troll/toxic comments within vs between subs.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_intersub_analysis_data_story.ipynb) |
 
-  - **Does a low PCA score predict actual troll comments?** Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score (Figure 6a), number of replies (Figure 6b), and PCA toxicity score (Figure 6d) have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values (Figure 6c). User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. 
+### Does a low PCA score predict actual troll comments? 
+Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score (Figure 6a), number of replies (Figure 6b), and PCA toxicity score (Figure 6d) have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values (Figure 6c). User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. 
   
 | Jupyter notebook |
 | -- |
@@ -186,13 +187,13 @@ Table 2 shows which input features were used for each model. Note that unlike th
 | [Recurrent Neural Network](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
 
 
-### Results
+## Results
 
 I compared the performance of the four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
 
 When evaluating model performance, I was looking at which models had the highest scores, but also how variable the models were: it wouldn't do for a model to perform very well with certain datasets, but very poorly with others.
 
-#### Overall model performance, and intersub performance variability.
+### Overall model performance, and intersub performance variability.
 
 Looking at overall model performance for all subreddits (Figure 7), several results particularly stand out:
 
@@ -206,7 +207,7 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 | -- | 
 | ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/model_perf_mean_SE.png) |
 
-#### Comparing model performance across subreddits.
+### Comparing model performance across subreddits.
 
 Looking at how models performed across all subreddits (Figure 8) revealed some interesting trends. 
 
@@ -221,7 +222,7 @@ Looking at how models performed across all subreddits (Figure 8) revealed some i
 | ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets//model_perf_across_subs.png) |
 
 
-#### Effect of total sample size on classifier performance
+### Effect of total sample size on classifier performance
 
 It's possible that some of the variation in classifier performance was due to the different sample sizes of each of the subreddits (max = gaming at 129982, min = conservative at 41434 samples total). I plotted balanced accuracy against total sample size for each subreddit and classifier type (Figure 9). If overall sample size predicts model performance, there should be a significant positive correlation, but that was not the case for any of the models.
 
@@ -232,7 +233,7 @@ It's possible that some of the variation in classifier performance was due to th
 
 
 
-#### Effect of toxic sample size on classifier performance
+### Effect of toxic sample size on classifier performance
 
 Even if total training sample size had no impact, it could be that the number of toxic-labelled samples was important to model performance. I plotted balanced accuracy against number of toxic-labelled samples for each subreddit and classifier type (Figure 10). This produced interesting and puzzling results: three models, Multinomial Naive Bayes, Random Forest and XGBoost, performed better when there were more toxic-labelled samples, but the Recurrent Neural Network performed worse when there were more toxic-labelled samples.
 
@@ -243,7 +244,7 @@ Even if total training sample size had no impact, it could be that the number of
 
 
 
-#### Effect of toxic sample percentage on classifier performance
+### Effect of toxic sample percentage on classifier performance
 
 To further examine the effect of toxic-labelled sample size on model performance, I plotted balanced accuracy against the percentage of toxic-labelled comments in each subreddit dataset (Figure 11). This controls for overall sample size effect. I found an even stronger and similar effect: Multinomial Naive Bayes, Random Forest and XGBoost performed better when there was a higher proportion of toxic-labelled samples, while the RNN performed worse. In fact, Recurrent Neural Network shows a vey tight **negative** linear relationship with toxic-labelled sample proportion.
 
@@ -257,7 +258,7 @@ To further examine the effect of toxic-labelled sample size on model performance
 | --- |
 | [Model evaluation and selection](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_selection_v1.ipynb) |
 
-### Conclusions
+## Conclusions
 
 Overall, the models performed weakly. Random Forest and XGBoost did well only with a few specific subreddit comment datasets, and very poorly with others, making them unreliable. Multinomial Naive Bayes was overall worse than Random Forest and XGBoost and also had variable performance. Recurrent Neural Network model was worse overall than the other three, but it had lower variance across subreddits. My recommendation would be to do or a combination of two things:
 
@@ -267,7 +268,7 @@ Overall, the models performed weakly. Random Forest and XGBoost did well only wi
 
 
 
-### All notebooks
+## All notebooks
 
 | |
 | -- |
