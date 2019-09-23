@@ -48,7 +48,7 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 
 | Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
 | -- | -- | -- | 
-| ![feature correlations](./assets/feature_correlations.png) | ![Vote score vs PCA2 score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/pca_score_distribution.png)  |
+| ![feature correlations](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/feature_correlations.png) | ![Vote score vs PCA2 score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/pca_score_distribution.png)  |
 
 | Jupyter notebooks |
 | -- |
@@ -136,7 +136,7 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
  | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" | Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
 | -- | -- | -- | -- | 
-| ![troll words vs vote score](./assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](./assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
+| ![troll words vs vote score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
 
   - #### Model feature engineering and model prep
   
@@ -200,7 +200,7 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
 | -- | 
-| ![overall performance](./assets/model_perf_mean_SE.png) |
+| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/model_perf_mean_SE.png) |
 
 #### Comparing model performance across subreddits.
 
@@ -214,7 +214,7 @@ Looking at how models performed across all subreddits (Figure 8) revealed some i
 
 | Figure 8: Model performance across subreddits |
 | -- | 
-| ![overall performance](./assets/model_perf_across_subs.png) |
+| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets//model_perf_across_subs.png) |
 
 
 #### Effect of total sample size on classifier performance
@@ -224,7 +224,7 @@ It's possible that some of the variation in classifier performance was due to th
 
 | Figure 9: Effect of total number of training samples on model performance |
 | -- | 
-| ![overall performance](./assets/all_samp_size_vs_perf.png) |
+| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/all_samp_size_vs_perf.png) |
 
 
 
@@ -235,7 +235,7 @@ Even if total training sample size had no impact, it could be that the number of
 
 | Figure 10: Effect of number of Toxic training samples on model performance |
 | -- | 
-| ![overall performance](./assets/toxic_samp_size_vs_perf.png) |
+| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/toxic_samp_size_vs_perf.png) |
 
 
 
@@ -246,7 +246,7 @@ To further examine the effect of toxic-labelled sample size on model performance
 
 | Figure 11: Effect of percentage of toxic training samples on model performance |
 | -- | 
-| ![overall performance](./assets/toxic_samp_pct_vs_perf.png) |
+| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/toxic_samp_pct_vs_perf.png) |
 
 
 | Jupyter notebook |
