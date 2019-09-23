@@ -138,10 +138,6 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 ### Does a low PCA score predict actual troll comments? 
 Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score (Figure 6a), number of replies (Figure 6b), and PCA toxicity score (Figure 6d) have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values (Figure 6c). User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. 
   
-| Jupyter notebook |
-| -- |
-| ["troll reply" analysis of toxicity score](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
-
  | Figure 6a: Mean +/- 95% CI vote scores when replies contain the word "troll" | Figure 6b: Mean +/- 95% CI number of replies when replies contain the word "troll" |
 | -- | -- |
 | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/trollwords_vs_vote_score.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_num_replies.png" width="400"/>  | 
@@ -150,6 +146,14 @@ Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a sub
 | Figure 6c: Mean +/- 95% CI user Karma when replies contain the word "troll" | Figure 6d: Mean +/- 95% CI PCA-based toxicity score level when replies contain the word "troll" |
 | -- | -- | 
 <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_user_karma.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_PCA_score.png" width="400"/>  |
+
+
+| Jupyter notebook |
+| -- |
+| ["troll reply" analysis of toxicity score](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
+
+
+
 
 ### Model feature engineering and model prep
   
@@ -176,6 +180,7 @@ Table 2 shows which input features were used for each model. Note that unlike th
 | Random Forest | * | * | * |  |
 | XGBoost | * | * | * |  |
 | Recurrent Neural Network |  |  |  | * |
+
 
 
 ### Model tuning and testing code 
