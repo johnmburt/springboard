@@ -2,8 +2,10 @@
 # A Reddit troll rapid detection and warning tool
 
 <p align="center">
-  <img img src="https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/181108_troll.jpg" width="600"/>
+  <img img src="
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/181108_troll.jpg" width="600"/>
 </p>
+
 
 Table of contents:
 - [The problem](#problem)
@@ -48,7 +50,10 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 
 | Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
 | -- | -- | -- | 
-| ![feature correlations](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/feature_correlations.png) | ![Vote score vs PCA2 score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/pca_score_distribution.png)  |
+| ![feature correlations](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/feature_correlations.png) | ![Vote score vs PCA2 score](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/pca_score_distribution.png)  |
 
 | Jupyter notebooks |
 | -- |
@@ -93,7 +98,8 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 4: Cosine similarity confusion matrix comparing all subs |
 | -- |
-| ![confusion](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_conf_mx.png) |
+| ![confusion](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_conf_mx.png) |
 
 
 ### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends
@@ -109,7 +115,8 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 5: MDS mapping based on the similarity matrix |
 | -- | 
-| ![MDS map](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_MDS_map.png) |
+| ![MDS map](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_MDS_map.png) |
 
 ### What words are common to positive comments and are they different from negative comments? 
 
@@ -122,7 +129,8 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
 | Figure 6: Wordclouds of positive comments and negative comments across subreddits  |
 | -- |  
-| ![comment wordclouds](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png)|
+| ![comment wordclouds](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png)|
 
 | Jupyter notebook |
 | -- |
@@ -137,12 +145,16 @@ Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a sub
 
  | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" |
 | -- | -- |
-| ![troll words vs vote score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | 
+| ![troll words vs vote score](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_num_replies.png) | 
 
 
 | Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
 | -- | -- | 
-![troll words vs user karma](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
+![troll words vs user karma](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
 
 ### Model feature engineering and model prep
   
@@ -205,7 +217,8 @@ Looking at overall model performance for all subreddits (Figure 7), several resu
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
 | -- | 
-| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/model_perf_mean_SE.png) |
+| ![overall performance](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png) |
 
 ### Comparing model performance across subreddits.
 
@@ -219,7 +232,8 @@ Looking at how models performed across all subreddits (Figure 8) revealed some i
 
 | Figure 8: Model performance across subreddits |
 | -- | 
-| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets//model_perf_across_subs.png) |
+| ![overall performance](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png) |
 
 
 ### Effect of total sample size on classifier performance
@@ -229,7 +243,8 @@ It's possible that some of the variation in classifier performance was due to th
 
 | Figure 9: Effect of total number of training samples on model performance |
 | -- | 
-| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/all_samp_size_vs_perf.png) |
+| ![overall performance](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/all_samp_size_vs_perf.png) |
 
 
 
@@ -240,7 +255,8 @@ Even if total training sample size had no impact, it could be that the number of
 
 | Figure 10: Effect of number of Toxic training samples on model performance |
 | -- | 
-| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/toxic_samp_size_vs_perf.png) |
+| ![overall performance](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_size_vs_perf.png) |
 
 
 
@@ -251,7 +267,8 @@ To further examine the effect of toxic-labelled sample size on model performance
 
 | Figure 11: Effect of percentage of toxic training samples on model performance |
 | -- | 
-| ![overall performance](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/toxic_samp_pct_vs_perf.png) |
+| ![overall performance](
+https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_pct_vs_perf.png) |
 
 
 | Jupyter notebook |
