@@ -1,10 +1,7 @@
 # Capstone Project 1:
 # A Reddit troll rapid detection and warning tool
 
-<p align="center">
-  <img img src="
-https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/181108_troll.jpg" width="600"/>
-</p>
+<p align="center"><img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/181108_troll.jpg" width="500"/></p>
 
 
 Table of contents:
@@ -14,6 +11,7 @@ Table of contents:
 - [Results](#results)
 - [Conclusions](#conclusions)
 - [List of all notebooks](#all-notebooks)
+
 
 ## TLDR
 
@@ -50,10 +48,10 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 
 | Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
 | -- | -- | -- | 
-| ![feature correlations](
-https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/feature_correlations.png) | ![Vote score vs PCA2 score](
-https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](
-https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/pca_score_distribution.png)  |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/feature_correlations.png" width="300"/> | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/vote_score_vs_pca2.png" width="300"/> | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/pca_score_distribution.png" width="300"/>  |
+
+
+
 
 | Jupyter notebooks |
 | -- |
