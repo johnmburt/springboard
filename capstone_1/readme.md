@@ -1,9 +1,8 @@
 # Capstone Project 1:
 # A Reddit troll rapid detection and warning tool
 
-<p align="center">
-  <img img src="https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/181108_troll.jpg" width="600"/>
-</p>
+<p align="center"><img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/181108_troll.jpg" width="500"/></p>
+
 
 Table of contents:
 - [The problem](#problem)
@@ -11,12 +10,12 @@ Table of contents:
 - [Classifier Models](#classifier-models)
 - [Results](#results)
 - [Conclusions](#conclusions)
-- [References](#references)
 - [List of all notebooks](#all-notebooks)
+
 
 ## TLDR
 
-The goal of this project was to build and test a toxic "troll" comment detector for subreddits on reddit, using NLP methods. I collected comments from 12 subreddits (subs) and labelled each comment as toxic or nontoxic based on comment metadata such as vote score. I tested performance of four classifier models trained with data from each sub: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network (RNN). I found that none of the classifiers performed particularly well (balanced accuracy metric, overall best: XGBoost at 65%, worst: RNN at 62%). Models differed in performance variance across sub datasets (highest balanced accuracy SEM: Random Forest at +/-3%, lowest: RNN at 1.5%), and differed in which subreddits they performed better or worse at. Taken together, I conclude that 1) further work needs to be done on model feature engineering and selection, and 2) while the RNN classifier performed lower than the other classifiers, it had the lowest performance variance across subreddits and was therefore more desireable. In the future I would recommend further improving the RNN model, using additional context and features. 
+The goal of this project was to build and test a toxic "troll" comment detector for subreddits on reddit, using NLP methods. I collected comments from 12 subreddits (subs) and labelled each comment as toxic or nontoxic based on comment metadata such as vote score. I tested performance of four classifier models trained with data from each sub: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network (RNN). I found that none of the classifiers performed particularly well (balanced accuracy metric, overall best: XGBoost at 65%, worst: RNN at 62%). Models differed in performance variance across sub datasets (highest balanced accuracy SEM: Random Forest at +/-3%, lowest: RNN at 1.5%), and differed in which subreddits they performed better or worse at. Taken together, I conclude that 1) further work needs to be done on model feature engineering and selection, and 2) while the RNN classifier performed lower than the other classifiers, it had the lowest performance variance across subreddits and was therefore more desirable. In the future I would recommend further improving the RNN model, using additional context and features. 
 
 
 ## Problem
@@ -45,11 +44,18 @@ I created a continuous variable "toxicity score" based on PCA analysis of commen
 
 ### **PCA analysis methods:** 
 
-Using the vote score as a guide, I correlated other comment metadata and selected the feature(s) that had strong correlations with vote score to include in a PCA analysis with two PCA dimensions. In my analysis (Figures 1-3), the only other feature that correlated consistently with vote score was "number of replies to the comment". Two other features, "days since comment was made" and "overall user comment karma" were correlated, but the correlation varied greatly between subs and so these were excluded. PCA dimension 2 showed a positive regression with vote score and was chosen to use as the "toxicity score". This score was then normalized and ranged to values between -5 and +5. 
+Using the vote score as a guide, I correlated other comment metadata and selected the feature(s) that had strong correlations with vote score to include in a PCA analysis with two PCA dimensions. In a pairwise pearson correlation analysis (Figure 1), the only other feature that correlated consistently with vote score was "number of replies to the comment". Two other features, "days since comment was made" and "overall user comment karma" were correlated, but the correlation varied greatly between subs and so these were excluded. PCA dimension 2 showed a strong positive correlaton with vote score (Figure 2) and was chosen to use as the "toxicity score". The PCA2 values were then normalized and ranged to values between -5 and +5. The distribution of scores was not normal, with the appearance of two overlapping distributions. Most likely this is due to the score being the sum of upvotes and downvotes, which are distinctly different choices by users. For this project, however, I am choosing low scores at the negative tail of the distribution  
 
-| Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score | Figure 3: PCA-based score distribution |
-| -- | -- | -- | 
-| ![feature correlations](./assets/feature_correlations.png) | ![Vote score vs PCA2 score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/vote_score_vs_pca2.png) | ![PCA-based score distribution](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/pca_score_distribution.png)  |
+| Figure 1: feature correlations | Figure 2: Vote score vs PCA2 score |
+| -- | -- |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/feature_correlations.png" width="400"/> | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/vote_score_vs_pca2.png" width="400"/> |
+
+| Figure 3: PCA-based score distribution |
+| -- | 
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/pca_score_distribution.png" width="500"/>  |
+
+
+
 
 | Jupyter notebooks |
 | -- |
@@ -80,11 +86,11 @@ Using the vote score as a guide, I correlated other comment metadata and selecte
 | [Generate Table 1 in markdown format.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_generate_sub_data_stats.ipynb) |
 
 
-### **Are troll comments the same across subreddits?** 
+### Are troll comments the same across subreddits? 
 
 It would be ideal if a single model could be used to detect toxic comments in any subreddit. Alternatively, it might be the case that each subreddit has it's own vocabulary and responds differently to comments - it's possible that a highly rated comment in one sub is considered toxic in another. What I found was that each subreddit does indeed have its own vocabulary ofterms used, and that subs with similar topics are more similar. This suggests that a single model trained on all sub data will likely perform poorly compared to individual classifier models trained only on comments from a particular sub.
 
-#### Word similarity of comments between subs
+### Word similarity of comments between subs
 
 How similar are comments made between the different subs? Are there different trends in similarity among positive vs. negative comments? Is the language used in political subs more similar than with other non-political subs?
 
@@ -94,10 +100,10 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 4: Cosine similarity confusion matrix comparing all subs |
 | -- |
-| ![confusion](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_conf_mx.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_conf_mx.png" width="800"/>  |
 
 
-#### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends:
+### MDS mapping the subreddit comment similarities (Figure 5) reveals several interesting trends
 
 - The political subs are clustered closely together, meaning the comments used similar language. Subs 'politics' and 'politicaldiscussion' are very close or overlapping. This suggests that the topics and commenting users may have high overlap.
 
@@ -110,9 +116,9 @@ A plot of the similarity matrices shows some interesting patterns (Figure 4). Fi
 
 | Figure 5: MDS mapping based on the similarity matrix |
 | -- | 
-| ![MDS map](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/intersub_MDS_map.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/intersub_MDS_map.png" width="800"/>  |
 
-### **What words are common to positive comments and are they different from negative comments?** 
+### What words are common to positive comments and are they different from negative comments? 
 
 For this analysis, I combined all positive comments (highly positive toxicity score) and all negative comments (very negative toxicity scores) and looked at the wordclouds for each (Figure 6).
 
@@ -123,51 +129,63 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 
 | Figure 6: Wordclouds of positive comments and negative comments across subreddits  |
 | -- |  
-| ![comment wordclouds](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png)|
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/positive_vs_negative_comment_text_wordclouds.png" width="800"/> |
 
 | Jupyter notebook |
 | -- |
 | [Analysis of troll/toxic comments within vs between subs.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_intersub_analysis_data_story.ipynb) |
 
-  - **Does a low PCA score predict actual troll comments?** Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score (Figure 6a), number of replies (Figure 6b), and PCA toxicity score (Figure 6d) have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values (Figure 6c). User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. 
+### Does a low PCA score predict actual troll comments? 
+Reddit provides no definitive label of "toxic" vs "non-toxic" comments. As a substitute, I have made a logical assumption that comments that are heavily downvoted are more likely to be toxic - "troll comments". I tested this assumption by examining whether replies to low vote score comments are more likely to contain the word "troll" - that is, other users are calling out the toxic commenter as a troll. If so, then that would indicate that a low vote score (and therefore a low PCA-based toxicity score) is associated with toxicity. The results of this analysis show that vote score (Figure 6a), number of replies (Figure 6b), and PCA toxicity score (Figure 6d) have significantly lower values when at least one reply contains the word "troll", verifying that they are good predictors of comment toxicity. An additional comment feature, "user karma", a measure of a user's overall vote score, was also associated with low values (Figure 6c). User karma did not contribute to the PCA-based toxicity score, but was used as a feature for training the classifier models. 
   
+ | Figure 6a: Mean +/- 95% CI vote scores when replies contain the word "troll" | Figure 6b: Mean +/- 95% CI number of replies when replies contain the word "troll" |
+| -- | -- |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/trollwords_vs_vote_score.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_num_replies.png" width="400"/>  | 
+
+
+| Figure 6c: Mean +/- 95% CI user Karma when replies contain the word "troll" | Figure 6d: Mean +/- 95% CI PCA-based toxicity score level when replies contain the word "troll" |
+| -- | -- | 
+<img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_user_karma.png" width="400"/>  | <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/troll_words_vs_PCA_score.png" width="400"/>  |
+
+
 | Jupyter notebook |
 | -- |
 | ["troll reply" analysis of toxicity score](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_reply_to_troll_analysis_v9.ipynb) |
 
- | Figure 6a: Vote scores when replies contain the word "troll" | Figure 6b: Number of replies when replies contain the word "troll" | Figure 6c: User Karma when replies contain the word "troll" | Figure 6d: PCA-based toxicity score level when replies contain the word "troll" |
-| -- | -- | -- | -- | 
-| ![troll words vs vote score](./assets/trollwords_vs_vote_score.png) | ![troll words vs num replies](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_num_replies.png) | ![troll words vs user karma](./assets/troll_words_vs_user_karma.png) | ![troll words vs PCA score](https://github.com/johnmburt/springboard/blob/master/capstone_1/assets/troll_words_vs_PCA_score.png) |
 
-  - #### Model feature engineering and model prep
+
+
+### Model feature engineering and model prep
   
-    - Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
+- Feature data used in training and testing varied from model to model, but included: comment metadata, vectorized comment text and Doc2Vec embedding vectors. These data were prepared from the base dataset, for each subreddit, and saved to two csv files: text features and Doc2Vec features.
     
-    
-    - Additionally, to simplify the following model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
+- To simplify the model notebook code, I moved several commonly used functions into a module to be imported by each notebook.
 
 | Jupyter notebook |
 | -- |
 | [Model feature data file creation.](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_comment_create_model_features_v1.ipynb) |
 | [Shared functions module](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/capstone1_helper.ipynb) |
-
-
-
-
-  - #### Classifier models: 
-    - I chose several models to evaluate based on their common use in NLP tasks. 
-    - Model evaluation procedures:
-      - Each model model was separately trained and tested with feature data from two different subs ('politics' and 'videos'). Testing two datasets was necessary because preliminary analyses found that political and non-political subs appear to have different downvoting behavior. I wanted to ensure that the classifier model would function equally well for both types of sub.
-      - Hyperparameters were optimized using the hyperopt package
-      - For each model type, optimized models were evaluated using k-fold cross validation for each subreddit in the dataset.
-      - Metric statistics were reported for all models.
-    - Models used:
-      - Multinomial Naive Bayes
-      - Random Forest
-      - XGBoost
-      - Recurrent Neural Network. 
-
       
+ 
+### Classifier models
+I chose four models to evaluate based on their common use in NLP tasks: Multinomial Naive Bayes, Random Forest, XGBoost and a Recurrent Neural Network (RNN) using a bidirectional LSTM. Parameters for each model were tuned using the hyperopt Baysian optimizaton package, and then a k-folds cross validation of the model with optimized parameters was run for every subreddit. The results were logged for the model selection analysis. 
+
+Table 2 shows which input features were used for each model. Note that unlike the others, the Recurrent Neural Network used only text feature data (tokenized and sequenced for the embedding input layer).
+            
+**Table 2. Input features used by classifier models**
+
+| Model | Vectorized comment text | Metadata | Doc2Vec vectors | Sequenced text |
+| -- | :----: | :----: | :----: | :----: |
+| Multinomial Naive Bayes | * | * | * |  |
+| Random Forest | * | * | * |  |
+| XGBoost | * | * | * |  |
+| Recurrent Neural Network |  |  |  | * |
+
+
+
+### Model tuning and testing code 
+      
+     
 | Model hyperparameter tuning notebooks | 
 | --- |
 | [Multinomial Naive Bayes](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_MNB_hyperopt_v1.ipynb) |
@@ -184,82 +202,90 @@ Image URL component "imgur" shows up frequently in the positive comments for bot
 | [Recurrent Neural Network](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_RNN_validation_v1.ipynb) |
 
 
-### Results
+## Results
 
-I compared the performance of four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
+I compared the performance of the four classifier models across comment datasets from the 12 subreddits. The model performance data used for this analysis was logged during validation runs. For a metric, I chose balanced accuracy. Since this was a binary classification problem, a score of 50% was equivalent to a random prediction, and scores above that are better.
 
 When evaluating model performance, I was looking at which models had the highest scores, but also how variable the models were: it wouldn't do for a model to perform very well with certain datasets, but very poorly with others.
 
-#### Overall model performance, and intersub performance variability.
+### Overall model performance, and intersub performance variability.
 
 Looking at overall model performance for all subreddits (Figure 7), several results particularly stand out:
 
 - None of the models performed very well. The model with the highest balanced accuracy was XGBoost (65%) , and lowest was RNN (62%). 
 
 
-- XGBoost performed best, but performed the most variably across subreddits (SEM +/- 2.5%), while the worst performer, RNN, has the lowest variability across subreddits (SEM +/- 1.2%). The other two models also had higher variance than RNN. 
+- XGBoost performed best, but performed the most variably across subreddits (SEM +/- 2.5%), while the worst performer, Recurrent Neural Network, has the lowest variability across subreddits (SEM +/- 1.2%). The other two models also had higher variance than Recurrent Neural Network. 
 
 
 | Figure 7: Mean +/- SE model performance for all subreddits |
 | -- | 
-| ![overall performance](./assets/model_perf_mean_SE.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_mean_SE.png" width="800"/>  |
 
-#### Comparing model performance across subreddits.
+### Comparing model performance across subreddits.
 
 Looking at how models performed across all subreddits (Figure 8) revealed some interesting trends. 
 
-- Each model performed differently with different subreddits. For example, the RNN performed much better than all other models on r/science, but was much poorer than the others on r/politicaldiscussion. The lowest model/sub score was 52% (RandomForest/science) and the highest was 81% (RandomForest/the_donald).
+- Each model performed differently with different subreddits. For example, the RNN performed much better than all other models on r/science, but was much poorer than the others on r/politicaldiscussion. The lowest model/sub score was 52% (Random Forest/science) and the highest was 81% (RandomForest/the_donald).
 
 
-- The models MultinomialNB, RandomForest and XGBClassifier performed most similarly, while RNN often performed well when the others had poor balanced accuracy, and vice versa. That the first three models performed similarly is not surprising - they all used the same feature data, whereas the RNN had a very different data transformation process. 
+- The models Multinomial Naive Bayes, Random Forest and XGBoost performed most similarly, while Recurrent Neural Network often performed well when the others had poor balanced accuracy, and vice versa. That the first three models performed similarly is not surprising - they all used the same feature data, whereas the RNN had a very different data transformation process. 
 
 
 | Figure 8: Model performance across subreddits |
 | -- | 
-| ![overall performance](./assets/model_perf_across_subs.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/model_perf_across_subs.png" width="800"/>  |
 
 
-#### Effect of total sample size on classifier performance
+### Effect of total sample size on classifier performance
 
 It's possible that some of the variation in classifier performance was due to the different sample sizes of each of the subreddits (max = gaming at 129982, min = conservative at 41434 samples total). I plotted balanced accuracy against total sample size for each subreddit and classifier type (Figure 9). If overall sample size predicts model performance, there should be a significant positive correlation, but that was not the case for any of the models.
 
 
 | Figure 9: Effect of total number of training samples on model performance |
 | -- | 
-| ![overall performance](./assets/all_samp_size_vs_perf.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/all_samp_size_vs_perf.png" width="600"/>  |
 
 
 
-#### Effect of toxic sample size on classifier performance
+### Effect of toxic sample size on classifier performance
 
-Even if total training sample size had no impact, it could be that the number of toxic-labelled samples was important to model performance. I plotted balanced accuracy against number of toxic-labelled samples for each subreddit and classifier type (Figure 10). This produced interesting and puzzling results: three models, MultinomialNB, RandomForest and XGBClassifier, performed better when there were more toxic-labelled samples, but the RNN performed worse when there were more toxic-labelled samples.
+Even if total training sample size had no impact, it could be that the number of toxic-labelled samples was important to model performance. I plotted balanced accuracy against number of toxic-labelled samples for each subreddit and classifier type (Figure 10). This produced interesting and puzzling results: three models, Multinomial Naive Bayes, Random Forest and XGBoost, performed better when there were more toxic-labelled samples, but the Recurrent Neural Network performed worse when there were more toxic-labelled samples.
 
 
 | Figure 10: Effect of number of Toxic training samples on model performance |
 | -- | 
-| ![overall performance](./assets/toxic_samp_size_vs_perf.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_size_vs_perf.png" width="600"/>  |
 
 
 
-#### Effect of toxic sample percentage on classifier performance
+### Effect of toxic sample percentage on classifier performance
 
-To further examine the effect of toxic-labelled sample size on model performance, I plotted balanced accuracy against the percentage of toxic-labelled comments in each subreddit dataset (Figure 11). This controls for overall sample size effect. I found an even stronger and similar effect: MultinomialNB, RandomForest and XGBClassifier performed better when there was a higher proportion of toxic-labelled samples, while the RNN performed worse. In fact, RNN shows a vey tight negative linear relationship with toxic-labelled sample proportion.
+To further examine the effect of toxic-labelled sample size on model performance, I plotted balanced accuracy against the percentage of toxic-labelled comments in each subreddit dataset (Figure 11). This controls for overall sample size effect. I found an even stronger and similar effect: Multinomial Naive Bayes, Random Forest and XGBoost performed better when there was a higher proportion of toxic-labelled samples, while the RNN performed worse. In fact, Recurrent Neural Network shows a vey tight **negative** linear relationship with toxic-labelled sample proportion.
 
 
 | Figure 11: Effect of percentage of toxic training samples on model performance |
 | -- | 
-| ![overall performance](./assets/toxic_samp_pct_vs_perf.png) |
+| <img img src="https://raw.githubusercontent.com/johnmburt/springboard/master/capstone_1/assets/toxic_samp_pct_vs_perf.png" width="600"/>  |
 
 
 | Jupyter notebook |
 | --- |
 | [Model evaluation and selection](http://nbviewer.jupyter.org/github/johnmburt/springboard/blob/master/capstone_1/reddit_toxic_comment_detection_model_selection_v1.ipynb) |
 
-### Conclusions
+## Conclusions
 
-### References
+Overall, the models performed weakly. Random Forest and XGBoost did well only with a few specific subreddit comment datasets, and very poorly with others, making them unreliable. Multinomial Naive Bayes was overall worse than Random Forest and XGBoost and also had variable performance. Recurrent Neural Network model was worse overall than the other three, but it had lower variance across subreddits. My recommendation would be to do several things:
 
-### All notebooks
+- Determine why Recurrent Neural Network model performance decreased as the proportion of toxic comments increased, which was counter-intuitive and unlike the other models. Understanding this behavior could help me improve the RNN model performance.
+
+- Enhance the Neural Network model. In particular, I would implement a multiple input deep learning model that could receive all of the feature data that the other models used, in addition to the sequenced text data required by the LSTM network. Also, Recurrent Convolutional networks are often used in text classification and may perform better than the network model used in this project.
+
+- Combine the models as base classifiers in a stacked model. Given that each model performed differently with different datasets, a stacked model could provide significant improvements.
+
+
+
+## All notebooks
 
 | |
 | -- |
