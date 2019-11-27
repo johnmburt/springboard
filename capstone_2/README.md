@@ -1,6 +1,6 @@
 # Springboard Capstone 2 project: Building a Board Game Recommendation Engine
 
-## Data download and utilities:
+## Data download, data prep and utilities:
 
 |  Notebook  |  Description  |
 |  --  |  --  |
