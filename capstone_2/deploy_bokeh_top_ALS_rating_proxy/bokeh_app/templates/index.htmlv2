@@ -1,0 +1,35 @@
+{% extends base %}
+
+{% block title %}Board game recommender{% endblock %}
+
+{% block preamble %}
+
+<style>
+	.bk-root .bk-tab {
+		background-color: cyan;
+		width: 200px;
+		color: red;
+		font-style: italic;
+	}
+
+	.bk-root .bk-tabs-header .bk-tab.bk-active{
+	background-color: yellow;
+	color: blue;
+	font-style: normal;
+	font-weight: bold;
+	}
+
+	.bk-root .bk-tabs-header .bk-tab:hover{
+	background-color: yellow
+	}
+
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+  body {
+    font-family: 'Noto Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: #000;
+    background-image: url("./static/images/pic2676444_five_tribes_dark.jpg");
+  }
+</style>
+{% endblock %}

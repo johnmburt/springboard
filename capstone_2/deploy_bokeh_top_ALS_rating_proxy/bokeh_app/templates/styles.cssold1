@@ -1,0 +1,62 @@
+body {
+	background-image: url( "static/images/pic2676444_five_tribes_light.png" ); 
+	background-color: #ebe2ca;
+}
+      		
+.bk-root .bk-clearfix {
+	background-color:  rgba(255,255,255,.5) ;
+	color:  #000000 ;
+}
+
+.bk-root .bk-input-group {
+	background-color:  rgba(255,255,255,.5) ;
+	font-style: normal;
+	font-size: 100%;
+	color:  #000000 ;
+}
+
+.bk-root .bk-btn {
+	background-color:  rgba(255,255,255,.5) ;
+	font-style: normal;
+	font-size: 120%;
+	color:  #000000 ;
+}
+
+.bk-root .bk-tab {
+	background-color:  rgba(255,255,255,.5) ;
+	font-style: normal;
+	font-size: 120%;
+	color:  #000000 ;
+}
+
+.bk-root .bk-tabs-header .bk-tab.bk-active{
+	background-color: #ffffff;
+	color:  #000000 ;
+	font-size: 120%;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.bk-root .bk-tabs-header .bk-tab:hover{
+	background-color: #ffffff;
+}
+
+
+.rec-post-container {
+    margin: 20px 20px 0 0;  
+    border: 5px solid #333;
+    overflow: auto
+}
+.rec-post-thumb {
+    float: left
+}
+.rec-post-thumb img {
+    display: block
+}
+.rec-post-content {
+    margin-left: 210px
+}
+.rec-post-title {
+    font-weight: bold;
+    font-size: 200%
+}
