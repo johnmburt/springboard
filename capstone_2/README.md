@@ -1,6 +1,6 @@
 # Springboard Capstone 2 project: Building a Board Game Recommendation Engine
 
-## Data download and utilities:
+## Data download, data prep and utilities:
 
 |  Notebook  |  Description  |
 |  --  |  --  |
@@ -20,7 +20,7 @@
 | [recsys_method_2a_top_ALS_rating_foldin_tuning_vf.ipynb](recsys_method_2a_top_ALS_rating_foldin_tuning_vf.ipynb) | Recommendation model 2a, Top ALS Rating: fold-in new user to utility matrix, select highest rated games | 
 | [recsys_method_2b_top_ALS_rating_proxy_user_tuning_vf.ipynb](recsys_method_2b_top_ALS_rating_proxy_user_tuning_vf.ipynb) | Recommendation model 2b, Top ALS Rating: use existing users in filled utility matrix as proxies to new user | 
 
-# Heroku boardgame recommender web app deployments
+## Heroku boardgame recommender web app deployments
 
 | folder | Description |
 |  --  |  --  |
