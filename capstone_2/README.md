@@ -1,5 +1,9 @@
 # Springboard Capstone 2 project: Building a Board Game Recommendation Engine
 
+For this project I designed a board game recommender system that asks a user for a list of games that they already like, and then recommends games based on their game preferences. The system was trained using ratings data from the BoardGameGeek website, and I tested three model variations. After tuning and selecting the best recommender model, I deployed it as a working web app using the bokeh web server.
+
+For more details, see my [project report](https://github.com/johnmburt/springboard/blob/master/capstone_2/Capstone_2_report.pdf) or the notebooks below.
+
 ## Data download, data prep and utilities:
 
 |  Notebook  |  Description  |
