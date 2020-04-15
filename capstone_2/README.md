@@ -4,6 +4,11 @@ For this project I designed a board game recommender system that asks a user for
 
 For more details, see my [project report](https://github.com/johnmburt/springboard/blob/master/capstone_2/Capstone_2_report.pdf) or the notebooks below.
 
+You can run the recommender app here:
+http://jmb-boardgame-recommender.herokuapp.com/
+
+Note: I'm using a free Heroku server so startup is very slow!
+
 ## Data download, data prep and utilities:
 
 |  Notebook  |  Description  |
